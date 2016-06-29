@@ -10,13 +10,18 @@
 
 		public Angle(int degrees, int minutes, int seconds)
 		{
-			var m = (minutes + seconds / 60);
-			var d = (degrees + m / 60);
+			var sum = degrees * 3600 + minutes * 60 + seconds;
 
-			Seconds = seconds % 60;
-			Minutes = m % 60;
-			Degrees = d % 360;
+			if (sum < 0)
+				sum = Limit + sum;
+			else if (sum >= Limit)
+				sum = sum - Limit;
+
+			Degrees = sum / 3600;
+			Minutes = (sum - Degrees * 3600) / 60;
+			Seconds = sum - Degrees * 3600 - Minutes * 60;
 		}
+		
 
 		#region operators
 
@@ -26,7 +31,7 @@
 		{
 			if (sum < 0)
 				sum = Limit + sum;
-			else if (sum > Limit)
+			else if (sum >= Limit)
 				sum = sum - Limit;
 
 			angle.Degrees = sum / 3600;

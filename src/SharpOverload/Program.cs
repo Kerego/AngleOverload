@@ -7,7 +7,7 @@ namespace SharpOverload
 	{
 		public static void Main(string[] args)
 		{
-			var a = new Angle(205, 44, 12);
+			var a = new Angle(-200, 15, -12);
 			var b = new Angle(204, 44, 12);
 
 			Console.WriteLine($"a = {a}");
